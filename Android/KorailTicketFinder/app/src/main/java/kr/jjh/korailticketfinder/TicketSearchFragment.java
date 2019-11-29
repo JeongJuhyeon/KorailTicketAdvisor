@@ -92,12 +92,12 @@ public class TicketSearchFragment extends Fragment {
 
     private void getTicket(String station1, String station2){
 
-        String url="http://127.0.0.1:5000/ticket/"+station1+"/"+station2;
+        String url="http://192.168.43.238:5000/ticket/"+station1+"/"+station2;
         System.out.println(url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://13.209.222.215:3001/api/login", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("response:");
@@ -107,7 +107,7 @@ public class TicketSearchFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                System.err.println(error);
             }
         });
 

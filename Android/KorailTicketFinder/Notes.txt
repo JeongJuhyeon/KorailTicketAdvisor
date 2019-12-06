@@ -1,0 +1,6 @@
+Localhost Access thru cable
+
+Fixed by:
+1. In Flask set host=0.0.0.0
+2. Use tethering or mobile hotspot
+3. Use PC's Local IP

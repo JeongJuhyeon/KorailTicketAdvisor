@@ -32,6 +32,8 @@ public class TicketSearchFragment extends Fragment {
     private Context mContext;
     private String departure_station;
     private String arrival_station;
+    private String localURL = "http://192.168.43.238:5000";
+    private String herokuURL = "https://knu-mobile-app-korail.herokuapp.com";
     Button button;
 
     @Override
@@ -53,7 +55,7 @@ public class TicketSearchFragment extends Fragment {
         Spinner spinner_departure = (Spinner) view.findViewById(R.id.departureSpinner);
         Spinner spinner_arrival = (Spinner) view.findViewById(R.id.arrivalSpinner);
 
-        ArrayAdapter<CharSequence>adapter = ArrayAdapter.createFromResource(mContext, R.array.stations,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
@@ -62,7 +64,7 @@ public class TicketSearchFragment extends Fragment {
         spinner_departure.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                departure_station=parent.getItemAtPosition(position).toString();
+                departure_station = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -73,7 +75,7 @@ public class TicketSearchFragment extends Fragment {
         spinner_arrival.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                arrival_station=parent.getItemAtPosition(position).toString();
+                arrival_station = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -90,9 +92,9 @@ public class TicketSearchFragment extends Fragment {
         return view;
     }
 
-    private void getTicket(String station1, String station2){
+    private void getTicket(String station1, String station2) {
 
-        String url="http://192.168.43.238:5000/ticket/"+station1+"/"+station2;
+        String url = localURL + "/ticket/" + station1 + "/" + station2;
         System.out.println(url);
 
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);

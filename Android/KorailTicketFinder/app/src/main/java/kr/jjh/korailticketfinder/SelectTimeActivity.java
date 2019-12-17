@@ -1,5 +1,6 @@
 package kr.jjh.korailticketfinder;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -94,7 +95,7 @@ public class SelectTimeActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectTimeActivity.this, ResultActivity.class);
                 intent.putExtras(bundle);
 
-                startActivity(intent);
+                startActivityForResult(intent,0);
             }
 
         }, new Response.ErrorListener() {
@@ -141,5 +142,14 @@ public class SelectTimeActivity extends AppCompatActivity {
         }
 
         return ticketResult;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.e("result","resultcode: "+resultCode);
+        if(resultCode==RESULT_OK)
+            finish();
     }
 }

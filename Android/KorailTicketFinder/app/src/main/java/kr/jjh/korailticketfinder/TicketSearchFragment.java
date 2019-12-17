@@ -2,8 +2,10 @@ package kr.jjh.korailticketfinder;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Spinner;
 
 import com.android.volley.Request;
@@ -32,9 +35,9 @@ public class TicketSearchFragment extends Fragment {
     private Context mContext;
     private String departure_station;
     private String arrival_station;
-    private String localURL = "http://192.168.43.238:5000";
-    private String herokuURL = "https://knu-mobile-app-korail.herokuapp.com";
-    Button button;
+    int year;
+    int month;
+    int day;
 
     @Override
     public void onAttach(Context context) {
@@ -54,6 +57,7 @@ public class TicketSearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ticket_search, container, false);
         Spinner spinner_departure = (Spinner) view.findViewById(R.id.departureSpinner);
         Spinner spinner_arrival = (Spinner) view.findViewById(R.id.arrivalSpinner);
+        final CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -83,36 +87,40 @@ public class TicketSearchFragment extends Fragment {
 
             }
         });
-        view.findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int d) {
+                year = y;
+                month = m + 1;
+                day = d;
+            }
+        });
+
+        view.findViewById(R.id.submitDateButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getTicket(departure_station, arrival_station);
+                Intent intent = new Intent(getActivity(), SelectTimeActivity.class);
+                intent.putExtra("year",year);
+                intent.putExtra("month",month);
+                intent.putExtra("day",day);
+                intent.putExtra("departure_station", departure_station);
+                intent.putExtra("arrival_station", arrival_station);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.korail.talk");
+                if (intent != null) {
+                    startActivity(intent);
+                }
             }
         });
         return view;
     }
 
-    private void getTicket(String station1, String station2) {
 
-        String url = localURL + "/ticket/" + station1 + "/" + station2;
-        System.out.println(url);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                System.out.println("response:");
-                System.out.println(response.toString());
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.err.println(error);
-            }
-        });
-
-        requestQueue.add(jsonObjectRequest);
-    }
 }

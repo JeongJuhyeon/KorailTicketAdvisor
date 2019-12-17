@@ -76,7 +76,7 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     private void getTicket(String station1, String station2) {
         String date = year + numToString(month) + numToString(day);
-        String url = localURL + "/ticket/" + station1 + "/" + station2 + "/" + date + "/" + hour + minute + "00";
+        String url = localURL + "/ticket/" + station1 + "/" + station2 + "/" + date + "/" + numToString(hour) + numToString(minute) + "00";
         System.out.println(url);
         Toast toast = Toast.makeText(getApplicationContext(), url, Toast.LENGTH_LONG);
         toast.show();

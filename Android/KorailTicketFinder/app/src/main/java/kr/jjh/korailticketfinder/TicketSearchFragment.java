@@ -59,6 +59,7 @@ public class TicketSearchFragment extends Fragment {
         Spinner spinner_arrival = (Spinner) view.findViewById(R.id.arrivalSpinner);
         final CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

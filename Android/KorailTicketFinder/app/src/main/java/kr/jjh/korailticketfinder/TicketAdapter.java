@@ -29,17 +29,22 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
             ticketView = LayoutInflater.from(getContext()).inflate(R.layout.item_ticket, parent, false);
         }
 
-        TextView tvDept = ticketView.findViewById(R.id.tvDept);
-        TextView tvArr = ticketView.findViewById(R.id.tvArr);
-        TextView tvTime = ticketView.findViewById(R.id.tvTime);
+        TextView tvDept = ticketView.findViewById(R.id.ticket_departure);
+        TextView tvArr = ticketView.findViewById(R.id.ticket_arrival);
+        TextView tvTime = ticketView.findViewById(R.id.ticket_time);
         TextView tvNumber = ticketView.findViewById(R.id.ticket_number);
 
         tvDept.setText(ticket.departure_station);
         tvArr.setText(ticket.arrival_station);
-        tvTime.setText(ticket.departure_time + " ~ " + ticket.arrival_time);
-        tvNumber.setText("티켓 #" + position);
+        tvTime.setText(changeTime( ticket.departure_time )+ " ~ " + changeTime(ticket.arrival_time));
+        tvNumber.setText("티켓 #" + (position + 1));
 
 //        The returned view will be rendered
         return ticketView;
+    }
+
+    private String changeTime(String time) {
+        String noSeconds = time.substring(0,2) + ":" + time.substring(2,4);
+        return noSeconds;
     }
 }

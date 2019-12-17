@@ -27,20 +27,20 @@ public class ResultActivity extends AppCompatActivity {
 
         final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tickets);
         TicketAdapter ticketAdapter = new TicketAdapter(this, tickets);
-        ListView listView = findViewById(R.id.???);
+        ListView listView = findViewById(R.id.list_view);
         listView.setAdapter(ticketAdapter);
 
-        ((TextView) findViewById(R.id.textView)).setText(ticketResult.tickets.get(0).arrival_station);
-//
-//        findViewById(R.id.???).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = getPackageManager().getLaunchIntentForPackage("com.korail.talk");
-//                if (intent != null) {
-//                    startActivity(intent);
-//                }
-//            }
-//        });
+        ((TextView) findViewById(R.id.textViewDate)).setText(ticketResult.tickets.get(0).date);
+
+        findViewById(R.id.button_korail).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.korail.talk");
+                if (intent != null) {
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
 

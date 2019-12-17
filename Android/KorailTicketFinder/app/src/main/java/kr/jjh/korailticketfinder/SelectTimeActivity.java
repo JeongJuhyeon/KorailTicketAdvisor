@@ -131,7 +131,8 @@ public class SelectTimeActivity extends AppCompatActivity {
                 String arrivalStation = ticketJSON.getString("arr_name");
                 String departureTime = ticketJSON.getString("dep_time");
                 String arrivalTime = ticketJSON.getString("arr_time");
-                tickets.add(new Ticket(departureStation,arrivalStation,departureTime,arrivalTime));
+                String date = ticketJSON.getString("dep_date");
+                tickets.add(new Ticket(departureStation,arrivalStation,departureTime,arrivalTime, date));
             }
             ticketResult = new TicketResult(isIndirect,tickets);
 

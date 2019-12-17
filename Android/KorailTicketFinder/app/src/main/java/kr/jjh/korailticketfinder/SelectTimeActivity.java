@@ -89,6 +89,12 @@ public class SelectTimeActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 TicketResult ticketResult = parseJson(response);
 
+                if(ticketResult == null) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "No tickets for this time!", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("ticketResult",ticketResult);
 

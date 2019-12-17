@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ticket_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ticket #1"
+        android:textAlignment="center"
+        android:textColor="#C31A1717"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@id/ticket_departure"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ticket_departure"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="대구"
+        android:textAlignment="center"
+        android:textColor="#E11F1D1D"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@id/ticket_time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/ticket_number" />
+
+    <TextView
+        android:id="@+id/ticket_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="12:00 ~ 14:00"
+        android:textAlignment="center"
+        android:textColor="#E11F1D1D"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ticket_departure" />
+
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="5dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@id/ticket_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ticket_time" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/ticket_time"
+        app:layout_constraintLeft_toRightOf="@id/ticket_departure"
+        app:layout_constraintRight_toLeftOf="@id/ticket_arrival"
+        app:layout_constraintTop_toBottomOf="@id/ticket_number"
+        app:srcCompat="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/ticket_arrival"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="서울"
+        android:textAlignment="center"
+        android:textColor="#E11F1D1D"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/ticket_time"
+        app:layout_constraintLeft_toRightOf="@id/imageView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ticket_number" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

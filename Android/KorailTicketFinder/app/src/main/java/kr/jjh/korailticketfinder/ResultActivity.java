@@ -25,7 +25,6 @@ public class ResultActivity extends AppCompatActivity {
             tickets.add(ticket);
         }
 
-        final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tickets);
         TicketAdapter ticketAdapter = new TicketAdapter(this, tickets);
         ListView listView = findViewById(R.id.list_view);
         listView.setAdapter(ticketAdapter);

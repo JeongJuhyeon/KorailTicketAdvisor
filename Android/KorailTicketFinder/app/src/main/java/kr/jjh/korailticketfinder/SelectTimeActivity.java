@@ -32,7 +32,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     private Context mContext;
     private String departure_station;
     private String arrival_station;
-    private String localURL = "http://192.168.219.101:5000";
+    private String localURL = "http://192.168.43.238:5000";
     private String herokuURL = "https://knu-mobile-app-korail.herokuapp.com";
     int year;
     int month;

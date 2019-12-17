@@ -110,15 +110,7 @@ public class TicketSearchFragment extends Fragment {
             }
         });
 
-        view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.korail.talk");
-                if (intent != null) {
-                    startActivity(intent);
-                }
-            }
-        });
+
         return view;
     }
 

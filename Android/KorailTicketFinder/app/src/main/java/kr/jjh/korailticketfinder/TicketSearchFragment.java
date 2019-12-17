@@ -3,6 +3,7 @@ package kr.jjh.korailticketfinder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.LocaleData;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 
 /**
@@ -63,9 +66,10 @@ public class TicketSearchFragment extends Fragment {
         final CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
         date = new Date(calendarView.getDate());
-        year = date.getYear();
-        month = date.getMonth();
-        day = date.getDay();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        year = localDate.getYear();
+        month = localDate.getMonthValue();
+        day = localDate.getDayOfMonth();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

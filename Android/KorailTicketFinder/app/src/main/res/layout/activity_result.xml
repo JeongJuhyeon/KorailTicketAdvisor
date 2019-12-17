@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_Home"
+        android:id="@+id/button_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="홈으로"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:text="코레일 앱"
-        app:layout_constraintBottom_toTopOf="@id/button_Home"
+        app:layout_constraintBottom_toTopOf="@id/button_home"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_view" />

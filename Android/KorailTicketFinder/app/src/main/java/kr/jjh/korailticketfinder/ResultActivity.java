@@ -15,6 +15,6 @@ public class ResultActivity extends AppCompatActivity {
         Bundle receivedBundle = getIntent().getExtras();
         TicketResult ticketResult = (TicketResult) receivedBundle.getSerializable("ticketResult");
 
-        ((TextView) findViewById(R.id.textView)).setText(ticketResult.tickets.get(0).arrival_station);
+        //((TextView) findViewById(R.id.textView)).setText(ticketResult.tickets.get(0).arrival_station);
     }
 }

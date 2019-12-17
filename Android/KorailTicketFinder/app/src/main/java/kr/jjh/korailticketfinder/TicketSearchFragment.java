@@ -26,6 +26,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.sql.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +37,7 @@ public class TicketSearchFragment extends Fragment {
     private Context mContext;
     private String departure_station;
     private String arrival_station;
+    Date date;
     int year;
     int month;
     int day;
@@ -58,6 +61,11 @@ public class TicketSearchFragment extends Fragment {
         Spinner spinner_departure = (Spinner) view.findViewById(R.id.departureSpinner);
         Spinner spinner_arrival = (Spinner) view.findViewById(R.id.arrivalSpinner);
         final CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+
+        date = new Date(calendarView.getDate());
+        year = date.getYear();
+        month = date.getMonth();
+        day = date.getDay();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

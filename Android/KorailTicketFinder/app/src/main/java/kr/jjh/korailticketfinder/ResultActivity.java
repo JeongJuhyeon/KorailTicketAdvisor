@@ -30,7 +30,10 @@ public class ResultActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_view);
         listView.setAdapter(ticketAdapter);
 
-        ((TextView) findViewById(R.id.textViewDate)).setText(ticketResult.tickets.get(0).date);
+        String date = ticketResult.tickets.get(0).date;
+        date = date.substring(0,4)+"년 "+date.substring(4,6)+"월 "+date.substring(6,8)+"일 ";
+
+        ((TextView) findViewById(R.id.textViewDate)).setText(date);
 
         findViewById(R.id.button_korail).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +42,14 @@ public class ResultActivity extends AppCompatActivity {
                 if (intent != null) {
                     startActivity(intent);
                 }
+            }
+        });
+
+        findViewById(R.id.button_home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                finish();
             }
         });
     }

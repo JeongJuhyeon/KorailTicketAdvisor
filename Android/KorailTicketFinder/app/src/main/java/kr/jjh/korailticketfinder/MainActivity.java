@@ -1,7 +1,6 @@
 package kr.jjh.korailticketfinder;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.layout_test);
 //        ConstraintLayout cl = findViewById(R.id.viewLayout);
 //        getLayoutInflater().inflate(R.layout.item_ticket,cl);
-        if (savedInstanceState == null && getSupportFragmentManager().getFragments().size() == 0) //mayneedtoadd fVBid frameLayout==null
+        if (savedInstanceState == null && getSupportFragmentManager().getFragments().size() == 0)
         {
-            TicketSearchFragment numberFragment = new TicketSearchFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.framelayout, numberFragment).commit();
+            TicketSearchFragment initialFragment = new TicketSearchFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.framelayout, initialFragment).commit();
         }
 
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonTicketSearchFragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fr = new TicketSearchFragment();
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonMapFragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fr = new MapFragment();

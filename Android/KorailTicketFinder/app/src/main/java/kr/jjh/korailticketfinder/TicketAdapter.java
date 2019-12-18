@@ -26,7 +26,8 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (ticketView == null) {
-            ticketView = LayoutInflater.from(getContext()).inflate(R.layout.item_ticket, parent, false);
+            ticketView = LayoutInflater.from(getContext()).inflate(R.layout.item_ticket, parent,
+                    false);
         }
 
         TextView tvDept = ticketView.findViewById(R.id.ticket_departure);
@@ -48,3 +49,7 @@ public class TicketAdapter extends ArrayAdapter<Ticket> {
         return noSeconds;
     }
 }
+
+
+
+

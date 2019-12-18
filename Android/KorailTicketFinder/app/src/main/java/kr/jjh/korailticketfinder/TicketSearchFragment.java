@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -61,9 +62,9 @@ public class TicketSearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_search, container, false);
-        Spinner spinner_departure = (Spinner) view.findViewById(R.id.departureSpinner);
-        Spinner spinner_arrival = (Spinner) view.findViewById(R.id.arrivalSpinner);
-        final CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
+        Spinner spinner_departure = view.findViewById(R.id.departureSpinner);
+        Spinner spinner_arrival = view.findViewById(R.id.arrivalSpinner);
+        final CalendarView calendarView = view.findViewById(R.id.calendarView);
 
         date = new Date(calendarView.getDate());
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -71,12 +72,13 @@ public class TicketSearchFragment extends Fragment {
         month = localDate.getMonthValue();
         day = localDate.getDayOfMonth();
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.stations, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
+                R.array.stations, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
         spinner_departure.setAdapter(adapter);
         spinner_arrival.setAdapter(adapter);
+
         spinner_departure.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -112,6 +114,12 @@ public class TicketSearchFragment extends Fragment {
         view.findViewById(R.id.submitDateButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(departure_station.equals(arrival_station)) {
+                    Toast toast = Toast.makeText(mContext, "출발역과 도착역이 달라야 합니다!", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
+
                 Intent intent = new Intent(getActivity(), SelectTimeActivity.class);
                 intent.putExtra("year",year);
                 intent.putExtra("month",month);

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import javax.xml.transform.Result;
 
 public class SelectTimeActivity extends AppCompatActivity {
-    private Context mContext;
     private String departure_station;
     private String arrival_station;
     private String localURL = "http://192.168.43.238:5000";
@@ -40,7 +39,6 @@ public class SelectTimeActivity extends AppCompatActivity {
     int day;
     int hour;
     int minute;
-    private EditText editTextTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,20 +75,23 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     private void getTicket(String station1, String station2) {
         String date = year + numToString(month) + numToString(day);
-        String url = localURL + "/ticket/" + station1 + "/" + station2 + "/" + date + "/" + numToString(hour) + numToString(minute) + "00";
+        String url = herokuURL + "/ticket/" + station1 + "/" + station2 + "/" + date + "/" +
+                numToString(hour) + numToString(minute) + "00";
         System.out.println(url);
         Toast toast = Toast.makeText(getApplicationContext(), url, Toast.LENGTH_LONG);
         toast.show();
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 TicketResult ticketResult = parseJson(response);
 
                 if(ticketResult == null) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "No tickets for this time!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "No tickets for this time!", Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
@@ -111,7 +112,8 @@ public class SelectTimeActivity extends AppCompatActivity {
             }
         });
 
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(7000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(7000, 1,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonObjectRequest);
     }
 

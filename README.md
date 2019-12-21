@@ -1,1 +1,1 @@
-knu-mobile-app-team-project
+knu-mobile-app-teamproject
